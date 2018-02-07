@@ -30,6 +30,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvSignUp"
+        android:id="@+id/tilUsername">
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Username" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tilUsername"
         android:id="@+id/tilEmail">
         <EditText
             android:id="@+id/etEmail"
@@ -114,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Citizen ID" />
+            android:hint="Phone number" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

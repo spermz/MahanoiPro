@@ -7,20 +7,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.seniorproject.kabigonb.mahanoipro.R;
 import com.seniorproject.kabigonb.mahanoipro.activity.Main2Activity;
+import com.seniorproject.kabigonb.mahanoipro.dao.LoginDao;
+import com.seniorproject.kabigonb.mahanoipro.dao.TokenDao;
+import com.seniorproject.kabigonb.mahanoipro.manager.HttpManager;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
  * Created by nuuneoi on 11/16/2014.
  */
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class MainFragment extends Fragment implements View.OnClickListener, Callback<TokenDao> {
 
     Button btnSignUp;
     Button btnLogin;
     Button btnForgetPassword;
+
+    EditText etUserName,etPassword;
   //  android.support.v7.widget.Toolbar toolbar;
 
     public MainFragment() {
@@ -53,6 +66,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         btnSignUp =  rootView.findViewById(R.id.btnSignUp);
         btnLogin =  rootView.findViewById(R.id.btnLogin);
         btnForgetPassword =  rootView.findViewById(R.id.btnForgetPassword);
+
+        etUserName = rootView.findViewById(R.id.etUsername_login);
+        etPassword = rootView.findViewById(R.id.etPassword_login);
     }
 
     @Override
@@ -88,9 +104,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == btnLogin) {
-            Intent intent = new Intent(getActivity(), Main2Activity.class);
-            startActivity(intent);
-
+            Call<TokenDao> call = HttpManager.getInstance().getService().providerLogin(loginForm());
+            call.enqueue(this);
         }
         else if(v == btnSignUp) {
             getFragmentManager().beginTransaction().
@@ -107,5 +122,50 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         }
 
+    }
+
+    private LoginDao loginForm() {
+
+        LoginDao loginForm = new LoginDao();
+        loginForm.setUsername(etUserName.getText().toString());
+        loginForm.setPassword(etPassword.getText().toString());
+        return loginForm;
+    }
+
+
+    @Override
+    public void onResponse(Call<TokenDao> call, Response<TokenDao> response) {
+        if(response.isSuccessful())
+        {
+            TokenDao loginResponse = response.body();
+            if(loginResponse.getErrorMessage() != null)
+            {
+                Toast.makeText(getActivity(), loginResponse.getErrorMessage(), Toast.LENGTH_LONG).show();
+            }
+            else if(loginResponse.getStatusMessage() != null)
+            {
+                Toast.makeText(getActivity(), loginResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Intent intentLogIn = new Intent(getActivity(), Main2Activity.class);
+                startActivity(intentLogIn);
+
+            }
+
+        }
+        else
+        {
+            try {
+                Toast.makeText(getActivity(),response.errorBody().string(),Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(Call<TokenDao> call, Throwable t) {
+        Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG).show();
     }
 }
