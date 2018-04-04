@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 <LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:text="Sign Up"
+        android:textColor="@color/text"
         android:id="@+id/tvSignUp"/>
 
     <android.support.design.widget.TextInputLayout
@@ -121,6 +123,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tilCitizenId"
+        android:layout_marginBottom="20dp"
         android:id="@+id/tilPhoneNumber">
         <EditText
             android:id="@+id/etPhoneNumber"
@@ -130,11 +133,68 @@
             android:hint="Phone number" />
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:id="@+id/tvServiceChoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilPhoneNumber"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Choose service for your account"/>
+
+    <RadioGroup
+        android:id="@+id/rgJob"
+        android:layout_below="@+id/tvServiceChoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <RadioButton
+            android:id="@+id/job1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Food service"/>
+        <RadioButton
+            android:id="@+id/job2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Electric service"/>
+        <RadioButton
+            android:id="@+id/job3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plumbing service"/>
+        <RadioButton
+            android:id="@+id/job4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cleaning service"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvProviderDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rgJob"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Please describe all of your providing service here"/>
+
+    <EditText
+        android:id="@+id/etDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProviderDetail"
+        android:inputType="text" />
+
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tilPhoneNumber"
+        android:layout_below="@id/etDetail"
         android:layout_centerHorizontal="true"
         android:background="@color/colorSecondary"
         android:layout_marginTop="20dp"

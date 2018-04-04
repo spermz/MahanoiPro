@@ -10,9 +10,7 @@ import android.view.View;
 
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class CustomViewTemplate extends View {
 
     public CustomViewTemplate(Context context) {

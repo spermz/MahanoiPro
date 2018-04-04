@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.seniorproject.kabigonb.mahanoipro.R;
 import com.seniorproject.kabigonb.mahanoipro.dao.RegisterDao;
 import com.seniorproject.kabigonb.mahanoipro.manager.HttpManager;
@@ -20,13 +22,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class SignUpFragment extends Fragment implements View.OnClickListener, Callback<RegisterDao> {
 
     Button register;
-    EditText etEmail,etPassword,etName,etLastname,etCitizenId,etPhoneNumber,etUsername;
+    EditText etEmail,etPassword,etName,etLastname,etCitizenId,etPhoneNumber,etUsername,etDetail;
+    RadioGroup rgJob;
     public SignUpFragment() {
         super();
     }
@@ -58,6 +59,9 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
         etPassword = rootView.findViewById(R.id.etPassword);
         etPhoneNumber = rootView.findViewById(R.id.etPhoneNumber);
         etUsername = rootView.findViewById(R.id.etUsername);
+        etDetail = rootView.findViewById(R.id.etDetail);
+
+        rgJob = rootView.findViewById(R.id.rgJob);
 
     }
 
@@ -111,6 +115,23 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
         registerForm.setLastname(etLastname.getText().toString());
         registerForm.setCitizenId(etCitizenId.getText().toString());
         registerForm.setNumber(etPhoneNumber.getText().toString());
+        registerForm.setDetail(etDetail.getText().toString());
+        switch(rgJob.getCheckedRadioButtonId() ) {
+            case R.id.job1:
+                registerForm.setTypeService(1);
+                break;
+            case R.id.job2:
+                registerForm.setTypeService(2);
+                break;
+            case R.id.job3:
+                registerForm.setTypeService(3);
+                break;
+            case R.id.job4:
+                registerForm.setTypeService(4);
+                break;
+        }
+
+
         return registerForm;
 
     }
@@ -123,11 +144,11 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
             RegisterDao signupResponse = response.body();
             if(signupResponse.getErrorMessage() != null)
             {
-                Toast.makeText(getActivity(), signupResponse.getErrorMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(Contextor.getInstance().getContext(), signupResponse.getErrorMessage(), Toast.LENGTH_LONG).show();
             }
             else
             {
-                Toast.makeText(getActivity(), "Register Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(Contextor.getInstance().getContext(), "Register Successful", Toast.LENGTH_LONG).show();
                 getFragmentManager().beginTransaction()
                         .replace(R.id.contentContainer,MainFragment.newInstance())
                         .commit();
@@ -137,7 +158,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
         else
         {
             try {
-                Toast.makeText(getActivity(),response.errorBody().string(),Toast.LENGTH_LONG).show();
+                Toast.makeText(Contextor.getInstance().getContext(),response.errorBody().string(),Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -147,7 +168,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
 
     @Override
     public void onFailure(Call<RegisterDao> call, Throwable t) {
-        Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(Contextor.getInstance().getContext(),t.toString(),Toast.LENGTH_LONG).show();
 
     }
 

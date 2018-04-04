@@ -11,4 +11,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="text">#000000</color>
+    <color name="fragment_background">#EEEEEE</color>
 </resources>

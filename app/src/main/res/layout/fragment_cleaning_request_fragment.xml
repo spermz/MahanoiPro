@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fragment_background"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Customer Name"/>
+                    <TextView
+                        android:id="@+id/tvCleaning_CustomerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:text="Detail 1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text"
+                        android:textSize="20sp"
+                        android:text="Customer Email"/>
+                    <TextView
+                        android:id="@+id/tvCleaning_CustomerEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:text="Detail 2"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/text"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Phone Number"/>
+                    <TextView
+                        android:id="@+id/tvCleaning_CustomerNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:text="Detail 3"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/text"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Service Wanted"/>
+                    <TextView
+                        android:id="@+id/tvCleaning_serviceWanted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:text="Detail 4"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/text"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Place Type"/>
+                    <TextView
+                        android:id="@+id/tvCleaning_placeType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:text="Detail 5"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/text"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="More Detail"/>
+                    <TextView
+                        android:id="@+id/tvCleaning_moreDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text"
+                        android:textSize="16sp"
+                        android:text="Detail 6"/>
+
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp">
+
+                <Button
+                    android:id="@+id/btnMapView_cleaning"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="30dp"
+                    android:background="@color/colorSecondary"
+                    android:textSize="16sp"
+                    android:textColor="@color/text"
+                    android:text="View Map"/>
+
+                <Button
+                    android:id="@+id/btnCleaningFinish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnMapView_cleaning"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/colorSecondary"
+                    android:textSize="16sp"
+                    android:textColor="@color/text"
+                    android:text="FINISH"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -8,9 +8,7 @@ import com.seniorproject.kabigonb.mahanoipro.manager.http.ApiService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class HttpManager {
 
     private static HttpManager instance;

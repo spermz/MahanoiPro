@@ -10,9 +10,7 @@ import android.widget.Button;
 import com.seniorproject.kabigonb.mahanoipro.R;
 
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class ForgetPasswordFragment extends Fragment implements View.OnClickListener {
 
    Button reset;

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.seniorproject.kabigonb.mahanoipro.R;
 import com.seniorproject.kabigonb.mahanoipro.activity.Main2Activity;
 import com.seniorproject.kabigonb.mahanoipro.dao.LoginDao;
@@ -24,9 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class MainFragment extends Fragment implements View.OnClickListener, Callback<TokenDao> {
 
     Button btnSignUp;
@@ -140,24 +139,30 @@ public class MainFragment extends Fragment implements View.OnClickListener, Call
             TokenDao loginResponse = response.body();
             if(loginResponse.getErrorMessage() != null)
             {
-                Toast.makeText(getActivity(), loginResponse.getErrorMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(Contextor.getInstance().getContext(), loginResponse.getErrorMessage(), Toast.LENGTH_LONG).show();
             }
             else if(loginResponse.getStatusMessage() != null)
             {
-                Toast.makeText(getActivity(), loginResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(Contextor.getInstance().getContext(), loginResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
             }
             else
             {
-                Intent intentLogIn = new Intent(getActivity(), Main2Activity.class);
-                startActivity(intentLogIn);
+                Bundle bundle = new Bundle();
+                bundle.putString("token",loginResponse.getToken());
+                bundle.putString("userName",etUserName.getText().toString());
+                bundle.putInt("typeService",loginResponse.getTypeService());
 
+                Intent intentLogIn = new Intent(getActivity(), Main2Activity.class);
+                intentLogIn.putExtra("tokenBundle",bundle);
+                startActivity(intentLogIn);
+                getActivity().finish();
             }
 
         }
         else
         {
             try {
-                Toast.makeText(getActivity(),response.errorBody().string(),Toast.LENGTH_LONG).show();
+                Toast.makeText(Contextor.getInstance().getContext(),response.errorBody().string(),Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -166,6 +171,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Call
 
     @Override
     public void onFailure(Call<TokenDao> call, Throwable t) {
-        Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(Contextor.getInstance().getContext(),t.toString(),Toast.LENGTH_LONG).show();
     }
 }

@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <TextView
+        android:id="@+id/tvAccount_index"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/text"
+        android:text="Account"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAccount_index"
+        android:id="@+id/tilAccountFragment_name">
+        <EditText
+            android:id="@+id/etAccountFragment_CitizenId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tilAccountFragment_name"
+        android:id="@+id/tilAccountFragment_phoneNumber"
+        android:layout_marginBottom="20dp">
+        <EditText
+            android:id="@+id/etAccountFragment_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="Phone Number" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hee3"/>
+        android:background="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tilAccountFragment_phoneNumber"
+        android:textSize="16sp"
+        android:textColor="@color/text"
+        android:text="SAVE"/>
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+
+</RelativeLayout>

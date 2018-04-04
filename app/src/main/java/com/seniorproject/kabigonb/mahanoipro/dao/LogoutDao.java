@@ -9,8 +9,17 @@ import com.google.gson.annotations.SerializedName;
 public class LogoutDao {
 
     @SerializedName("token")     private String token;
+    @SerializedName("Username")  private String userName;
     @SerializedName("err")       private String errorMessage;
     @SerializedName("status")    private String statusMessage;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getToken() {
         return token;

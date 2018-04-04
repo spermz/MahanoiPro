@@ -14,9 +14,9 @@ public class RegisterDao {
     @SerializedName("email")        private String email;
     @SerializedName("password")     private String password;
     @SerializedName("citizenId")    private String citizenId;
-    @SerializedName("number")       private String number;
+    @SerializedName("telno")       private String number;
     @SerializedName("detail")       private String detail;
-    @SerializedName("job")          private int    job;
+    @SerializedName("typeservice")  private int    typeService;
     @SerializedName("err")       private String errorMessage;
     @SerializedName("status")    private String statusMessage;
 
@@ -85,12 +85,12 @@ public class RegisterDao {
         this.detail = detail;
     }
 
-    public int getJob() {
-        return job;
+    public int getTypeService() {
+        return typeService;
     }
 
-    public void setJob(int job) {
-        this.job = job;
+    public void setTypeService(int typeService) {
+        this.typeService = typeService;
     }
 
     public String getErrorMessage() {

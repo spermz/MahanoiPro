@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import com.seniorproject.kabigonb.mahanoipro.R;
 
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class AccountFragment extends Fragment {
 
     public AccountFragment() {

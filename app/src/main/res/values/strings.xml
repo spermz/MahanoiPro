@@ -3,4 +3,12 @@
     <string name="menu_account">Account</string>
     <string name="menu_work">Work</string>
     <string name="menu_request">Request</string>
+    <string name="list_request_name">Name</string>
+    <string name="list_request_serviceName">Service name</string>
+    <string name="list_request_location">location</string>
+    <string name="list_work_name">Name</string>
+    <string name="list_work_serviceName">Service Name</string>
+    <string name="list_work_location">Location</string>
+    <string name="logout">Logout</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
