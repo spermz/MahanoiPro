@@ -2,10 +2,13 @@ package com.seniorproject.kabigonb.mahanoipro.manager.http;
 
 import com.seniorproject.kabigonb.mahanoipro.dao.LoginDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.LogoutDao;
+import com.seniorproject.kabigonb.mahanoipro.dao.OfferDataDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.RegisterDao;
+import com.seniorproject.kabigonb.mahanoipro.dao.RequestDataDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.ResponseOfferDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.ServiceCollectionDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.TokenDao;
+import com.seniorproject.kabigonb.mahanoipro.dao.UserDataDAO;
 import com.seniorproject.kabigonb.mahanoipro.dao.WorkListDao;
 import com.seniorproject.kabigonb.mahanoipro.view.WorkListItem;
 
@@ -37,4 +40,9 @@ public interface ApiService {
     @POST("providerShowRequest")
     Call<WorkListDao>  loadWorkList(@Body WorkListDao workListDao);
 
+    @POST("providerCheckOffer")
+    Call<OfferDataDao> loadRequest(@Body OfferDataDao offerDataDao);
+
+    @POST("providerShowUser")
+    Call<UserDataDAO>   loadUserDetail(@Body UserDataDAO userDataDAO);
 }
