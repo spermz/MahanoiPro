@@ -26,7 +26,7 @@ import retrofit2.Response;
 public class SignUpFragment extends Fragment implements View.OnClickListener, Callback<RegisterDao> {
 
     Button register;
-    EditText etEmail,etPassword,etName,etLastname,etCitizenId,etPhoneNumber,etUsername,etDetail;
+    EditText etEmail,etPassword,etName,etLastname,etCitizenId,etPhoneNumber,etUsername,etDetail,etConfirmPassword;
     RadioGroup rgJob;
     public SignUpFragment() {
         super();
@@ -53,6 +53,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
         register = rootView.findViewById(R.id.btnRegister);
 
         etEmail = rootView.findViewById(R.id.etEmail);
+        etConfirmPassword = rootView.findViewById(R.id.etConfirmPassword);
         etCitizenId = rootView.findViewById(R.id.etCitizenId);
         etName = rootView.findViewById(R.id.etName);
         etLastname = rootView.findViewById(R.id.etLastName);
@@ -99,8 +100,21 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
     public void onClick(View v) {
         if(v == register)
         {
-            Call<RegisterDao> call = HttpManager.getInstance().getService().registerProvider(regFormDAO());
-            call.enqueue(this);
+            register.setEnabled(false
+            );
+            if(etPassword.getText().toString().equals(etConfirmPassword.getText().toString()))
+            {
+                Toast.makeText(Contextor.getInstance().getContext()
+                        , "Password does not match."
+                        , Toast.LENGTH_LONG).show();
+                register.setEnabled(true);
+            }
+            else
+            {
+                Call<RegisterDao> call = HttpManager.getInstance().getService().registerProvider(regFormDAO());
+                call.enqueue(this);
+            }
+
 
         }
     }
@@ -139,6 +153,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
     @Override
     public void onResponse(Call<RegisterDao> call, Response<RegisterDao> response) {
 
+        register.setEnabled(true);
+
         if(response.isSuccessful())
         {
             RegisterDao signupResponse = response.body();
@@ -168,6 +184,9 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Ca
 
     @Override
     public void onFailure(Call<RegisterDao> call, Throwable t) {
+
+        register.setEnabled(true);
+
         Toast.makeText(Contextor.getInstance().getContext(),t.toString(),Toast.LENGTH_LONG).show();
 
     }

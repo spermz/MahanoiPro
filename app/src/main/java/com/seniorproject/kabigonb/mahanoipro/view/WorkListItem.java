@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
@@ -12,6 +13,8 @@ import com.seniorproject.kabigonb.mahanoipro.R;
 
 
 public class WorkListItem extends BaseCustomViewGroup {
+
+    TextView list_work_name,list_work_serviceName,list_work_location;
 
     public WorkListItem(Context context) {
         super(context);
@@ -47,6 +50,10 @@ public class WorkListItem extends BaseCustomViewGroup {
 
     private void initInstances() {
         // findViewById here
+
+        list_work_name = findViewById(R.id.list_work_name);
+        list_work_serviceName = findViewById(R.id.list_work_serviceName);
+        list_work_location = findViewById(R.id.list_work_location);
     }
 
     private void initWithAttrs(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -83,6 +90,21 @@ public class WorkListItem extends BaseCustomViewGroup {
 
         Bundle bundle = ss.getBundle();
         // Restore State from bundle here
+    }
+
+    public void setList_work_name(String name)
+    {
+        list_work_name.setText(name);
+    }
+
+    public void setList_work_serviceName(String serviceName)
+    {
+        list_work_serviceName.setText(serviceName);
+    }
+
+    public void setList_work_location(String location)
+    {
+        list_work_location.setText(location);
     }
 
 }

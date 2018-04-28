@@ -81,7 +81,18 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
         btnCleaningDenied = rootView.findViewById(R.id.btnCleaningDenied);
 
         btnCleaningDenied.setOnClickListener(this);
-        btnCleaningDenied.setOnClickListener(this);
+        btnCleaningOffer.setOnClickListener(this);
+
+        textDataSet(dao);
+    }
+
+    private void textDataSet(RequestDataDao dao) {
+
+        tvCleaningWorkType.setText(dao.getTypeInfo());
+        tvCleaningPlaceType.setText(dao.getPlaceType());
+        tvCleaningRoomAmount.setText(dao.getAmount());
+        tvCleaningMoreDetails.setText(dao.getMoreDetail());
+
     }
 
     @Override
@@ -116,10 +127,11 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
 
         if(v == btnCleaningDenied)
         {
-
+            btnCleaningDenied.setEnabled(false);
         }
         if(v == btnCleaningOffer)
         {
+            btnCleaningOffer.setEnabled(false);
             Call<ResponseOfferDao> call = HttpManager.getInstance().getService().providerResponseOffer(responseOfferForm(dao));
             call.enqueue(responseCallBack);
         }
@@ -143,6 +155,8 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
     Callback<ResponseOfferDao> responseCallBack = new Callback<ResponseOfferDao>() {
         @Override
         public void onResponse(Call<ResponseOfferDao> call, Response<ResponseOfferDao> response) {
+
+            btnCleaningOffer.setEnabled(true);
 
             if (response.isSuccessful()) {
                 ResponseOfferDao dao = response.body();
@@ -180,6 +194,7 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
         @Override
         public void onFailure(Call<ResponseOfferDao> call, Throwable t) {
 
+            btnCleaningOffer.setEnabled(true);
             Toast.makeText(Contextor.getInstance().getContext(), t.toString(), Toast.LENGTH_SHORT).show();
         }
     };

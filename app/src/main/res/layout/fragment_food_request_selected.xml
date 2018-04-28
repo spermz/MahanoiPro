@@ -156,6 +156,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@color/colorSecondary"
                     android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
                     android:textColor="@color/text"
                     android:text="FINISH"/>
 

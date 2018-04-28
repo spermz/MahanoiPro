@@ -16,6 +16,7 @@ public class WorkListDataDao implements Parcelable{
     @SerializedName("latitude") private Double latitude;
     @SerializedName("longitude")    private Double longitude;
     @SerializedName("typeservice")  private int typeService;
+    @SerializedName("_id")      private  String requestId;
 
     public WorkListDataDao() {}
 
@@ -38,6 +39,7 @@ public class WorkListDataDao implements Parcelable{
             longitude = in.readDouble();
         }
         typeService = in.readInt();
+        requestId = in.readString();
     }
 
     @Override
@@ -61,6 +63,7 @@ public class WorkListDataDao implements Parcelable{
             dest.writeDouble(longitude);
         }
         dest.writeInt(typeService);
+        dest.writeString(requestId);
     }
 
     @Override
@@ -79,6 +82,14 @@ public class WorkListDataDao implements Parcelable{
             return new WorkListDataDao[size];
         }
     };
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
 
     public String getToken() {
         return token;

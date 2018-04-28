@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.seniorproject.kabigonb.mahanoipro.dao.WorkListDao;
+import com.seniorproject.kabigonb.mahanoipro.dao.WorkListDataDao;
 import com.seniorproject.kabigonb.mahanoipro.view.WorkListItem;
 
 /**
@@ -64,6 +65,33 @@ public class WorkListAdapter extends BaseAdapter {
             item = new WorkListItem(parent.getContext());
 
         }
+
+
+
+        WorkListDataDao dao = (WorkListDataDao) getItem(position);
+
+        item.setList_work_name(dao.getUserName());
+
+        switch(dao.getTypeService())
+        {
+            case 1:
+                item.setList_work_serviceName("Food Service");
+                break;
+            case 2:
+                item.setList_work_serviceName("Electric Service");
+                break;
+            case 3:
+                item.setList_work_serviceName("Plumbing Service");
+                break;
+            case 4:
+                item.setList_work_serviceName("Cleaning Service");
+                break;
+
+                default: item.setList_work_serviceName("");
+        }
+
+
+       // item.setList_work_location();
 
         return item;
 

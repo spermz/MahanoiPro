@@ -62,8 +62,10 @@ public class RequestListAdapter extends BaseAdapter {
         }
 
         RequestDataDao dao = (RequestDataDao) getItem(position);
+
         item.setList_request_name(dao.getUserName());
         item.setList_request_serviceName(dao.getTypeInfo());
+        //item.setList_request_location();
         return item;
 
     }

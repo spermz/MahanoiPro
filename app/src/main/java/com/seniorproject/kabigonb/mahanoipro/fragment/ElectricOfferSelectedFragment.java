@@ -133,11 +133,12 @@ public class ElectricOfferSelectedFragment extends Fragment implements View.OnCl
     public void onClick(View v) {
         if(v == btnElectricDenied)
         {
-
+            btnElectricDenied.setEnabled(false);
         }
 
         if(v == btnElectricOffer)
         {
+            btnElectricOffer.setEnabled(false);
             Call<ResponseOfferDao> call = HttpManager.getInstance().getService().providerResponseOffer(responseOfferForm(dao));
             call.enqueue(offerCall);
         }
@@ -158,6 +159,8 @@ public class ElectricOfferSelectedFragment extends Fragment implements View.OnCl
     Callback<ResponseOfferDao> offerCall = new Callback<ResponseOfferDao>() {
         @Override
         public void onResponse(Call<ResponseOfferDao> call, Response<ResponseOfferDao> response) {
+
+            btnElectricOffer.setEnabled(true);
 
             if(response.isSuccessful())
             {
@@ -198,6 +201,8 @@ public class ElectricOfferSelectedFragment extends Fragment implements View.OnCl
 
         @Override
         public void onFailure(Call<ResponseOfferDao> call, Throwable t) {
+
+            btnElectricOffer.setEnabled(true);
 
             Toast.makeText(Contextor.getInstance().getContext(), t.toString(), Toast.LENGTH_SHORT).show();
 

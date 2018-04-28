@@ -131,12 +131,13 @@ public class PlumbingOfferSelectedFragment extends Fragment implements View.OnCl
     public void onClick(View v) {
         if(v == btnPlumbingOffer)
         {
+            btnPlumbingOffer.setEnabled(false);
             Call<ResponseOfferDao> call = HttpManager.getInstance().getService().providerResponseOffer(offerResponseForm(dao));
             call.enqueue(responseCallBack);
         }
         if(v == btnPlumbingDenied)
         {
-
+            btnPlumbingDenied.setEnabled(false);
         }
     }
 
@@ -157,6 +158,9 @@ public class PlumbingOfferSelectedFragment extends Fragment implements View.OnCl
     Callback<ResponseOfferDao> responseCallBack = new Callback<ResponseOfferDao>() {
         @Override
         public void onResponse(Call<ResponseOfferDao> call, Response<ResponseOfferDao> response) {
+
+            btnPlumbingOffer.setEnabled(true);
+
 
             if (response.isSuccessful())
             {
@@ -194,6 +198,8 @@ public class PlumbingOfferSelectedFragment extends Fragment implements View.OnCl
         @Override
         public void onFailure(Call<ResponseOfferDao> call, Throwable t)
         {
+            btnPlumbingOffer.setEnabled(true);
+
             Toast.makeText(Contextor.getInstance().getContext(), t.toString(), Toast.LENGTH_SHORT).show();
         }
     };

@@ -109,6 +109,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="#FF1B5E20"
                     android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
                     android:textColor="#FFFFFF"
                     android:text="OFFER"/>
 
@@ -119,6 +120,7 @@
                     android:layout_alignParentRight="true"
                     android:background="#FFD50000"
                     android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
                     android:textColor="#FFFFFF"
                     android:text="DENIED"/>
 

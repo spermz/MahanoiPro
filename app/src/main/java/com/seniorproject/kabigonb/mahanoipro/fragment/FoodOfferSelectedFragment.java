@@ -121,10 +121,11 @@ public class FoodOfferSelectedFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         if(v == btnFoodDenied)
         {
-
+            btnFoodDenied.setEnabled(false);
         }
         if(v == btnFoodOffer)
         {
+            btnFoodOffer.setEnabled(false);
             Call<ResponseOfferDao> call = HttpManager.getInstance().getService().providerResponseOffer(responseOfferForm(dao));
             call.enqueue(offerCall);
         }
@@ -152,6 +153,9 @@ public class FoodOfferSelectedFragment extends Fragment implements View.OnClickL
     Callback<ResponseOfferDao> offerCall = new Callback<ResponseOfferDao>() {
         @Override
         public void onResponse(Call<ResponseOfferDao> call, Response<ResponseOfferDao> response) {
+
+            btnFoodOffer.setEnabled(true);
+
             if (response.isSuccessful()) {
                 ResponseOfferDao dao = response.body();
 
@@ -187,6 +191,8 @@ public class FoodOfferSelectedFragment extends Fragment implements View.OnClickL
 
         @Override
         public void onFailure(Call<ResponseOfferDao> call, Throwable t) {
+
+            btnFoodOffer.setEnabled(true);
 
             Toast.makeText(Contextor.getInstance().getContext(), t.toString(), Toast.LENGTH_SHORT).show();
         }

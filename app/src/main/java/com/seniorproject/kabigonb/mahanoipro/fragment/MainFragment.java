@@ -103,6 +103,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Call
     @Override
     public void onClick(View v) {
         if(v == btnLogin) {
+
+            btnLogin.setEnabled(false);
+
             Call<TokenDao> call = HttpManager.getInstance().getService().providerLogin(loginForm());
             call.enqueue(this);
         }
@@ -134,6 +137,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Call
 
     @Override
     public void onResponse(Call<TokenDao> call, Response<TokenDao> response) {
+
+        btnLogin.setEnabled(true);
+
         if(response.isSuccessful())
         {
             TokenDao loginResponse = response.body();
@@ -171,6 +177,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Call
 
     @Override
     public void onFailure(Call<TokenDao> call, Throwable t) {
+
+        btnLogin.setEnabled(true);
+
         Toast.makeText(Contextor.getInstance().getContext(),t.toString(),Toast.LENGTH_LONG).show();
     }
 }

@@ -1,5 +1,7 @@
 package com.seniorproject.kabigonb.mahanoipro.manager.http;
 
+import com.seniorproject.kabigonb.mahanoipro.dao.ChangePasswordDao;
+import com.seniorproject.kabigonb.mahanoipro.dao.FinishDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.LoginDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.LogoutDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.OfferDataDao;
@@ -45,4 +47,14 @@ public interface ApiService {
 
     @POST("providerShowUser")
     Call<UserDataDAO>   loadUserDetail(@Body UserDataDAO userDataDAO);
+
+    @POST("providerForgetPassword")
+    Call<ChangePasswordDao>    resetPassword(@Body ChangePasswordDao changePasswordDao);
+
+    @POST("providerEdit")
+    Call<RegisterDao>      providerUpdate(@Body RegisterDao registerDao);
+
+    @POST("requestDone")
+    Call<FinishDao>     finishService(@Body FinishDao finishDao);
+
 }
