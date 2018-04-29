@@ -167,12 +167,8 @@ public class CleaningRequestSelectedFragment extends Fragment implements View.On
         }
         if(v == btnCleaningFinish)
         {
-            Toast.makeText(Contextor.getInstance().getContext()
-                    ,"button press"
-                    ,Toast.LENGTH_SHORT)
-                    .show();
 
-          //  btnCleaningFinish.setEnabled(false);
+            btnCleaningFinish.setEnabled(false);
             Call<FinishDao> call = HttpManager.getInstance().getService().finishService(finishForm());
             call.enqueue(finishDaoCallback);
         }
@@ -274,7 +270,7 @@ public class CleaningRequestSelectedFragment extends Fragment implements View.On
         @Override
         public void onResponse(Call<FinishDao> call, Response<FinishDao> response) {
 
-          //  btnCleaningFinish.setEnabled(true);
+            btnCleaningFinish.setEnabled(true);
 
             if(response.isSuccessful())
             {
@@ -322,7 +318,7 @@ public class CleaningRequestSelectedFragment extends Fragment implements View.On
         @Override
         public void onFailure(Call<FinishDao> call, Throwable t) {
 
-           // btnCleaningFinish.setEnabled(true);
+            btnCleaningFinish.setEnabled(true);
 
             Toast.makeText(Contextor.getInstance().getContext()
                     ,t.toString()

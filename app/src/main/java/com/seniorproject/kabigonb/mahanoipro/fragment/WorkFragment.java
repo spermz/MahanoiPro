@@ -100,6 +100,7 @@ public class WorkFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onStart() {
         super.onStart();
+        loadData();
     }
 
     @Override

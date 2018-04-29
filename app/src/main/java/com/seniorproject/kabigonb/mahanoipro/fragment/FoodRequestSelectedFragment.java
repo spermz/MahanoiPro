@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.seniorproject.kabigonb.mahanoipro.R;
 import com.seniorproject.kabigonb.mahanoipro.activity.MapsActivity;
+import com.seniorproject.kabigonb.mahanoipro.dao.FinishDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.OfferDataDao;
 import com.seniorproject.kabigonb.mahanoipro.dao.UserDataDAO;
 import com.seniorproject.kabigonb.mahanoipro.dao.WorkListDataDao;
@@ -173,6 +174,25 @@ public class FoodRequestSelectedFragment extends Fragment implements View.OnClic
             startActivity(intent);
         }
 
+        if(v == btnFoodFinish)
+        {
+            btnFoodFinish.setEnabled(false);
+            Call<FinishDao> call = HttpManager.getInstance().getService().finishService(finishForm());
+            call.enqueue(finishDaoCallback);
+        }
+
+    }
+
+    private FinishDao finishForm() {
+
+        FinishDao finishDao = new FinishDao();
+        SharedPreferences prefs = getActivity().getSharedPreferences("token",Context.MODE_PRIVATE);
+
+        finishDao.setToken(prefs.getString("token",null));
+        finishDao.setRequestId(dao.getRequestId());
+        finishDao.setProviderName(dao.getProviderName());
+
+        return finishDao;
     }
 
     Callback<OfferDataDao> offerCallBack = new Callback<OfferDataDao>() {
@@ -259,6 +279,65 @@ public class FoodRequestSelectedFragment extends Fragment implements View.OnClic
             Toast.makeText(Contextor.getInstance().getContext()
                     ,t.toString()
                     ,Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    Callback<FinishDao> finishDaoCallback = new Callback<FinishDao>() {
+        @Override
+        public void onResponse(Call<FinishDao> call, Response<FinishDao> response) {
+
+            btnFoodFinish.setEnabled(true);
+
+            if(response.isSuccessful())
+            {
+                FinishDao dao = response.body();
+
+                if(dao.getErrorMessage() != null)
+                {
+                    Toast.makeText(Contextor.getInstance().getContext()
+                            ,dao.getErrorMessage()
+                            ,Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else if(!dao.getStatusMessage().equals("บันทึกสำเร็จ"))
+                {
+                    Toast.makeText(Contextor.getInstance().getContext()
+                            ,dao.getStatusMessage()
+                            ,Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else
+                {
+                    Toast.makeText(Contextor.getInstance().getContext()
+                            ,dao.getStatusMessage()
+                            ,Toast.LENGTH_SHORT)
+                            .show();
+                    getActivity().finish();
+                }
+
+            }
+
+            else
+            {
+                try {
+                    Toast.makeText(Contextor.getInstance().getContext()
+                            ,response.errorBody().string()
+                            ,Toast.LENGTH_SHORT)
+                            .show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<FinishDao> call, Throwable t) {
+
+            btnFoodFinish.setEnabled(true);
+            Toast.makeText(Contextor.getInstance().getContext()
+                    ,t.toString()
+                    ,Toast.LENGTH_SHORT)
+                    .show();
         }
     };
 

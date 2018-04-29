@@ -112,7 +112,7 @@ public class RequestFragment extends Fragment
     @Override
     public void onStart() {
         super.onStart();
-
+        reloadData();
     }
 
 
