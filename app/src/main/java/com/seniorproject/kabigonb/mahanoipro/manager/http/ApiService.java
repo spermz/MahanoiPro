@@ -57,4 +57,7 @@ public interface ApiService {
     @POST("requestDone")
     Call<FinishDao>     finishService(@Body FinishDao finishDao);
 
+    @POST("showProvider")
+    Call<RegisterDao>      loadProviderDetail(@Body RegisterDao registerDao);
+
 }

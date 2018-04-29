@@ -58,6 +58,20 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
         btnAccount_save.setOnClickListener(this);
 
+        Call<RegisterDao> call = HttpManager.getInstance().getService().loadProviderDetail(requestForm());
+        call.enqueue(callbackDetailLoad);
+
+    }
+
+    private RegisterDao requestForm() {
+
+        RegisterDao dao = new RegisterDao();
+        SharedPreferences prefs = getActivity().getSharedPreferences("token",Context.MODE_PRIVATE);
+
+        dao.setToken(prefs.getString("token",null));
+        dao.setUsername(prefs.getString("userName",null));
+
+        return dao;
     }
 
     @Override
@@ -170,6 +184,36 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                     ,Toast.LENGTH_SHORT)
                     .show();
 
+        }
+    };
+
+    Callback<RegisterDao> callbackDetailLoad = new Callback<RegisterDao>() {
+        @Override
+        public void onResponse(Call<RegisterDao> call, Response<RegisterDao> response) {
+
+            if(response.isSuccessful())
+            {
+                RegisterDao dao = response.body();
+                etAccountFragment_Name.setText(dao.getFirstname());
+                etAccountFragment_phoneNumber.setText(dao.getNumber());
+                etAccountFragment_detail.setText(dao.getDetail());
+                etAccountFragment_lastName.setText(dao.getLastname());
+
+            }
+            else
+            {
+                try {
+                    Toast.makeText(Contextor.getInstance().getContext(),response.errorBody().string(),Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<RegisterDao> call, Throwable t) {
+            Toast.makeText(Contextor.getInstance().getContext(),t.toString(),Toast.LENGTH_SHORT).show();
         }
     };
 }
