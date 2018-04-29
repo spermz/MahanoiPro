@@ -31,7 +31,7 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
 
     RequestDataDao dao;
     TextView tvCleaningWorkType,tvCleaningPlaceType,tvCleaningRoomAmount,tvCleaningMoreDetails;
-    Button btnCleaningOffer,btnCleaningDenied;
+    Button btnCleaningOffer;
 
     public CleaningOfferSelectedFragment() {
         super();
@@ -78,9 +78,7 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
         tvCleaningMoreDetails = rootView.findViewById(R.id.tvCleaningMoreDetails);
 
         btnCleaningOffer = rootView.findViewById(R.id.btnCleaningOffer);
-        btnCleaningDenied = rootView.findViewById(R.id.btnCleaningDenied);
 
-        btnCleaningDenied.setOnClickListener(this);
         btnCleaningOffer.setOnClickListener(this);
 
         textDataSet(dao);
@@ -125,10 +123,6 @@ public class CleaningOfferSelectedFragment extends Fragment implements View.OnCl
     @Override
     public void onClick(View v) {
 
-        if(v == btnCleaningDenied)
-        {
-            btnCleaningDenied.setEnabled(false);
-        }
         if(v == btnCleaningOffer)
         {
             btnCleaningOffer.setEnabled(false);

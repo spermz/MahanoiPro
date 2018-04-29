@@ -90,23 +90,14 @@
                     android:id="@+id/btnFoodOffer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_centerHorizontal="true"
                     android:background="#FF1B5E20"
                     android:textSize="16sp"
                     android:layout_marginBottom="10dp"
                     android:textColor="#FFFFFF"
                     android:text="OFFER"/>
 
-                <Button
-                    android:id="@+id/btnFoodDenied"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:background="#FFD50000"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="#FFFFFF"
-                    android:text="DENIED"/>
+
 
             </RelativeLayout>
 

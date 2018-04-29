@@ -32,7 +32,7 @@ public class FoodOfferSelectedFragment extends Fragment implements View.OnClickL
 
     RequestDataDao dao;
     TextView tvFoodType,tvFoodOrder,tvFoodMoreDetail;
-    Button btnFoodOffer,btnFoodDenied;
+    Button btnFoodOffer;
 
 
     public FoodOfferSelectedFragment() {
@@ -79,14 +79,13 @@ public class FoodOfferSelectedFragment extends Fragment implements View.OnClickL
         tvFoodOrder = rootView.findViewById(R.id.tvFoodOrder);
         tvFoodMoreDetail = rootView.findViewById(R.id.tvFoodMoreDetail);
         btnFoodOffer = rootView.findViewById(R.id.btnFoodOffer);
-        btnFoodDenied = rootView.findViewById(R.id.btnFoodDenied);
+
 
         tvFoodType.setText(dao.getTypeInfo());
         tvFoodOrder.setText(dao.getAmount());
         tvFoodMoreDetail.setText(dao.getMoreDetail());
 
         btnFoodOffer.setOnClickListener(this);
-        btnFoodDenied.setOnClickListener(this);
 
     }
 
@@ -119,10 +118,7 @@ public class FoodOfferSelectedFragment extends Fragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if(v == btnFoodDenied)
-        {
-            btnFoodDenied.setEnabled(false);
-        }
+
         if(v == btnFoodOffer)
         {
             btnFoodOffer.setEnabled(false);

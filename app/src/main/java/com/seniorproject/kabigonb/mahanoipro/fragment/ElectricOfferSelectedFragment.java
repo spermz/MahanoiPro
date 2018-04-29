@@ -36,7 +36,7 @@ public class ElectricOfferSelectedFragment extends Fragment implements View.OnCl
     RequestDataDao dao;
 
     TextView tvElectricServiceReq,tvElectricProblemFounded,tvElectricPlaceType,tvElectricMoreDetail;
-    Button btnElectricOffer,btnElectricDenied;
+    Button btnElectricOffer;
 
     public ElectricOfferSelectedFragment() {
         super();
@@ -84,9 +84,7 @@ public class ElectricOfferSelectedFragment extends Fragment implements View.OnCl
 
 
         btnElectricOffer = rootView.findViewById(R.id.btnElectricOffer);
-        btnElectricDenied = rootView.findViewById(R.id.btnElectricDenied);
 
-        btnElectricDenied.setOnClickListener(this);
         btnElectricOffer.setOnClickListener(this);
 
         textDataSet(dao);
@@ -131,10 +129,7 @@ public class ElectricOfferSelectedFragment extends Fragment implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        if(v == btnElectricDenied)
-        {
-            btnElectricDenied.setEnabled(false);
-        }
+
 
         if(v == btnElectricOffer)
         {

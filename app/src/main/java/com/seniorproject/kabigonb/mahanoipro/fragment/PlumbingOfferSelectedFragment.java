@@ -32,7 +32,7 @@ public class PlumbingOfferSelectedFragment extends Fragment implements View.OnCl
     RequestDataDao dao;
 
     TextView tvPlumbingServiceReq,tvPlumbingPart,tvPlumbingProblem,tvPlumbingPlaceType,tvPlumbingMoreDetail;
-    Button btnPlumbingOffer,btnPlumbingDenied;
+    Button btnPlumbingOffer;
 
     public PlumbingOfferSelectedFragment() {
         super();
@@ -81,10 +81,8 @@ public class PlumbingOfferSelectedFragment extends Fragment implements View.OnCl
         tvPlumbingMoreDetail = rootView.findViewById(R.id.tvPlumbingMoreDetail);
 
         btnPlumbingOffer = rootView.findViewById(R.id.btnPlumbingOffer);
-        btnPlumbingDenied = rootView.findViewById(R.id.btnPlumbingDenied);
 
         btnPlumbingOffer.setOnClickListener(this);
-        btnPlumbingDenied.setOnClickListener(this);
 
         textViewDataSet();
 
@@ -135,10 +133,7 @@ public class PlumbingOfferSelectedFragment extends Fragment implements View.OnCl
             Call<ResponseOfferDao> call = HttpManager.getInstance().getService().providerResponseOffer(offerResponseForm(dao));
             call.enqueue(responseCallBack);
         }
-        if(v == btnPlumbingDenied)
-        {
-            btnPlumbingDenied.setEnabled(false);
-        }
+
     }
 
     private ResponseOfferDao offerResponseForm(RequestDataDao dao) {
