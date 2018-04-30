@@ -91,7 +91,7 @@ public class WorkListAdapter extends BaseAdapter {
         }
 
 
-       // item.setList_work_location();
+        item.setList_work_location("ID : " + dao.getOfferId());
 
         return item;
 

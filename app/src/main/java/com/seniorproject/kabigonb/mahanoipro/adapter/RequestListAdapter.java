@@ -65,7 +65,7 @@ public class RequestListAdapter extends BaseAdapter {
 
         item.setList_request_name(dao.getUserName());
         item.setList_request_serviceName(dao.getTypeInfo());
-        //item.setList_request_location();
+        item.setList_request_location("ID : " + dao.getId());
         return item;
 
     }
